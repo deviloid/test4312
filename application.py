@@ -8,7 +8,7 @@ import glob
 
 app = Flask(__name__)
 
-@app.route("/home")
+@app.route('/home')
 def hello():
 
     return render_template("hostingstart.html")
