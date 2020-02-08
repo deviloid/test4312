@@ -9,5 +9,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
+    
     return render_template("hostingstart.html")
     # return "Meri pyari Kachuyi! 😘😘😘"
