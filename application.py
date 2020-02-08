@@ -8,8 +8,11 @@ import glob
 
 app = Flask(__name__)
 
-@app.route('/home')
+@app.route('/')
 def hello():
 
     return render_template("hostingstart.html")
     # return "Meri pyari Kachuyi! 😘😘😘"
+
+if __name__ == '__main__':
+    app.run()
