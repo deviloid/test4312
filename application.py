@@ -1,12 +1,14 @@
-from flask import Flask, render_template, url_for
-from flask_sqlaalchemy import flask_sqlaalchemy
-from datetime import datetime
+from flask import Flask
+from flask import render_template
+from flask import request
+from os import listdir
+from os.path import isfile, join
+import glob
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template('hostingstart.html')
-
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route("/")
+def hello():
+    
+    return render_template("hostingstart.html")
+    # return "Meri pyari Kachuyi! 😘😘😘"
