@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from flask_mysqldb import MySQL
 from datetime import datetime
 
 app = Flask(__name__)
@@ -25,14 +24,14 @@ def index():
         try:
             db.session.add(new_task)
             db.session.commit()
-            db.close()
+            db.session.close()
             return redirect('/')
         except:
             return 'There was an issue adding your task'
 
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
-        db.close()
+        db.session.close()
         return render_template('index.html', tasks=tasks)
 
 
@@ -43,7 +42,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        db.close()
+        db.session.close()
         return redirect('/')
     except:
         return 'There was a problem deleting that task'
@@ -57,13 +56,13 @@ def update(id):
 
         try:
             db.session.commit()
-            db.close()
+            db.session.close()
             return redirect('/')
         except:
             return 'There was an issue updating your task'
 
     else:
-        db.close()
+        db.session.close()
         return render_template('update.html', task=task)
 
 
