@@ -4,7 +4,7 @@ from flask_mysqldb import MySQL
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////    test.db'
 db = SQLAlchemy(app)
 
 class Todo(db.Model):
@@ -25,6 +25,7 @@ def index():
         try:
             db.session.add(new_task)
             db.session.commit()
+            db.close()
             return redirect('/')
         except:
             return 'There was an issue adding your task'
@@ -41,6 +42,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
+        db.close()
         return redirect('/')
     except:
         return 'There was a problem deleting that task'
@@ -54,6 +56,7 @@ def update(id):
 
         try:
             db.session.commit()
+            db.close()
             return redirect('/')
         except:
             return 'There was an issue updating your task'
