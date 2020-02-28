@@ -28,10 +28,12 @@ def index():
             db.close()
             return redirect('/')
         except:
+            db.close()
             return 'There was an issue adding your task'
 
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
+        db.close()
         return render_template('index.html', tasks=tasks)
 
 
@@ -45,6 +47,7 @@ def delete(id):
         db.close()
         return redirect('/')
     except:
+        db.close()
         return 'There was a problem deleting that task'
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
@@ -59,9 +62,11 @@ def update(id):
             db.close()
             return redirect('/')
         except:
+            db.close()
             return 'There was an issue updating your task'
 
     else:
+        db.close()
         return render_template('update.html', task=task)
 
 
