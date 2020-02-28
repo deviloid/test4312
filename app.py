@@ -28,7 +28,6 @@ def index():
             db.close()
             return redirect('/')
         except:
-            db.close()
             return 'There was an issue adding your task'
 
     else:
@@ -47,7 +46,6 @@ def delete(id):
         db.close()
         return redirect('/')
     except:
-        db.close()
         return 'There was a problem deleting that task'
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
@@ -62,7 +60,6 @@ def update(id):
             db.close()
             return redirect('/')
         except:
-            db.close()
             return 'There was an issue updating your task'
 
     else:
